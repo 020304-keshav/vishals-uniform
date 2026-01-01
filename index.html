@@ -3649,5 +3649,60 @@
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
+  <!-- ========== SIMPLE QR CODE FIX ========== -->
+<script>
+// Simple QR Code Generator
+function showQR() {
+  const modal = document.getElementById('qrModal');
+  const qrcodeElement = document.getElementById('qrcode');
+  
+  // Show modal
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  
+  // Clear previous QR
+  qrcodeElement.innerHTML = '';
+  
+  // Create simple QR display
+  const url = 'https://vishalsuniform.netlify.app';
+  
+  // Create QR-like display
+  const qrDisplay = document.createElement('div');
+  qrDisplay.className = 'text-center p-4';
+  qrDisplay.innerHTML = `
+    <div class="inline-block border-4 border-primary rounded-lg p-6 bg-white">
+      <div class="text-5xl mb-3">📱</div>
+      <div class="font-bold text-xl text-primary mb-2">VISHAL'S UNIFORM</div>
+      <div class="text-lg font-semibold mb-1">Hyderabad</div>
+      <div class="text-sm text-gray-600 mt-3">Scan with Phone Camera</div>
+      <div class="text-xs text-gray-500 mt-1">or visit:</div>
+      <div class="text-blue-600 font-mono text-sm mt-2 break-all">${url}</div>
+    </div>
+  `;
+  
+  qrcodeElement.appendChild(qrDisplay);
+  
+  // Add click to copy URL
+  qrDisplay.onclick = function() {
+    navigator.clipboard.writeText(url);
+    alert('URL copied! Share: ' + url);
+  };
+}
+
+function closeQR() {
+  document.getElementById('qrModal').classList.add('hidden');
+  document.getElementById('qrModal').classList.remove('flex');
+}
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeQR();
+  }
+});
+</script>
+<!-- ========== END QR FIX ========== -->
+  
 </body>
 </html>
+
